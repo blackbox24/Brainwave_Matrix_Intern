@@ -44,7 +44,7 @@ const App = () => {
       const newProposal = await _token.getAllProposals();
 
       setToken(_token);
-      console.log(newProposal);
+      console.log(Number(newProposal[0][1]));
       setChairperson(newChairperson);
       setProposal(newProposal);
     } catch (error) {
@@ -99,20 +99,25 @@ const App = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-              {proposal.map((row,index) => 
+              {
+              proposal && 
+              proposal.map((row,index) => 
                 {
                   const name =parseName(parseBytes(row.name));;
-                  const voteCount = row.voteCount._hex;
+                  const voteCount = row.voteCount;
                   return(
                   <TableRow key={index}>
                     <TableCell component="th" scope="row">{name}</TableCell>
                     <TableCell>{voteCount != null ? Number(voteCount):0}</TableCell>
+                    {console.log(voteCount)}
                     <TableCell>
                       <button style={{ marginLeft: '2em' }} onClick={() => voteProposal(index)}>Vote</button>
                     </TableCell>
                   </TableRow>)
                 })}
+                
               </TableBody>
+              
             </Table>
           </TableContainer>
         </div>

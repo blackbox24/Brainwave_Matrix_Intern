@@ -93,7 +93,7 @@
       const hardhatToken = await ethers.deployContract("Token");
 
       const ownerBalance = await hardhatToken.balanceOf(owner.address);
-      expect(await hardhatToken.totalSupply()).to.equal(ownerBalance);
+      expect(await hardhatToken.totalChainSupply()).to.equal(ownerBalance);
     });
   });
   ```
@@ -116,12 +116,28 @@ $ npx hardhat test
 ### SETUP FRONTEND
 - [X] create a react project in the root directory
 - [x] Type `npm create-react-app frontend` or `npm create-react-app .`
-- [x] create a `components` folder in the `./src` directory
-- [x] create a file called `Dapp.js` inside the component folder
+- [x] Clear the code folder in `./src/App.jsx`
+- [x] Create the app function and export it using export default keyword
 - [x] Create a folder called `ABI` into `./src` directory
 - [x] copy the compiled contract (`./artifacts/contracts/Ballot.sol/Ballot.json`) file into that direcotry
 - [x] next create`contract-address.json` in `./ABI/` directory and paste `{"Token":""}`
 - [x] open first terminal and type `npx hardhat node`
 - [x] open another terminal and type `npx hardhat --network localhost run scripts/deploy.cjs` inside 
 - [x] copy token address displayed in the second terminal and paste it inside `contract-address.json`
-- [x]  
+- [x] Write a simple script to connect to the network and also display address
+- [x] Write a simple script to help the user vote
+- [x] use try and catch to handle errors
+
+### SETUP META MASK
+- [x] install extension into browser
+- [x] create a custom network usin
+  - Network name: Localhost 8545
+  - URL: http://localhost:8545
+  - ID: 31337
+- [x] click on save to create the network
+- [x] make sure hardhat network and react app are running
+- [x] Click on vote
+- Note: Chairperson cannot vote. Hence you will have to create a new account by importing to meta mask
+- [x] copy the first private key in your terminal with hardhat node job running
+- [x] open your meta mask, click on button displayed with your current account number and select add account
+- [x] next select custom account and paste the private key into the input section and try voting again
