@@ -1,33 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { FormEvent, useState } from 'react'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [answer, setAnswer] = useState<string | null>(null)
+
+  const handleSumbit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+    const selectedMovie = formData.get("movie") as string
+    setAnswer(selectedMovie)
+    console.log("selected movie",selectedMovie)
+  }
 
   return (
     <>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <div>
+          <p>Answer: {answer}</p>
+        </div>
+        <p>What is your favourite movie?</p>
+        <form method='post' className='myform card' onSubmit={handleSumbit}>
+          <div>
+            <input type="radio" name="movie" value="The Accountant"/>
+            <label>The Accountant</label>
+          </div>
+          <div>
+            <input type="radio" name="movie" value="Mission Impossible"/>
+            <label>Mission Impossible</label>
+          </div>
+          <div>
+            <input type="radio" name="movie" value="The Batman"/>
+            <label>The Batman</label>
+          </div>
+          <div>
+            <input type="radio" name="movie" value="Man of Steel"/>
+            <label>Man of Steel</label>
+          </div>
+          <button type="submit">Submit</button>
+        </form>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
