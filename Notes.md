@@ -1,4 +1,4 @@
-# Voting dapp using solidity and React + Typescript + vite
+# Voting dapp using solidity and React + Javascript + vite
 
 ## STAGES IN THS TUTORIAL
 
